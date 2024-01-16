@@ -11,7 +11,10 @@ import { Input } from './components/Input';
 import { Container } from './components/Container';
 import { LoggedIn } from './components/state/LoggedIn';
 import { User } from './components/state/User';
-
+import { Counter } from './components/state/Counter';
+import { ThemeContextProvider } from './components/context/ThemeContext';
+import { Box } from './components/context/Box';
+import { UserContextProvider } from './components/context/UserContext';
 function App() {
   //object
   const personName = {
@@ -39,23 +42,47 @@ function App() {
       <h1>Hello!</h1>
        {/* String, Number and Boolean */}
       <Greet name="Naren" messageCount={20} isLoggedIn={true} />
+       
        {/* Object */}
       <Person name={personName}/>
+       
        {/* Array */}
       <PersonList names={nameList}/>
+      
       {/* Union */}
       <Status status="loading"/>
+      
       {/* Passing children props */}
       <Heading>Placeholder Text</Heading>
       <Oscar><Heading>Oscar goes to film Titanic!</Heading></Oscar>
+      
       {/* Typing Events props */}
       <Button handleClick={(e, id) => {console.log('Button clicked!', e, id)}}></Button>
       <Input handleChange={(event) => {console.log('Text entered', event.target.value)}} value=''></Input>
-       {/* Style props */}
+       
+      {/* Style props */}
        <Container styles={{border: "10px", background: "green", fontSize: "1rem" }} />
-       {/* useState props */}
+       
+      {/* useState props */}
        <LoggedIn/>
        <User/>
+        
+      {/* Typing useReducer */}
+        <Counter/>
+
+      {/* Typing useContext */}
+      <hr/>
+      <ThemeContextProvider>
+        <Box/>
+      </ThemeContextProvider>
+
+      {/* Typing useContext for user context */}
+      <UserContextProvider>
+        <User/>
+      </UserContextProvider>
+
+      {/* Typing useRef Hook */}
+
     </div>
   );
 }
