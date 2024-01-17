@@ -1,7 +1,7 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { UserContext } from './UserContext'
 
-export const User = () => {
+export const UserDetails = () => {
     const userContext = useContext(UserContext);
     const handleLogin = () => {
         userContext.setUser({

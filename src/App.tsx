@@ -15,6 +15,19 @@ import { Counter } from './components/state/Counter';
 import { ThemeContextProvider } from './components/context/ThemeContext';
 import { Box } from './components/context/Box';
 import { UserContextProvider } from './components/context/UserContext';
+import { UserDetails } from './components/context/UserDetails'
+import { DomRef } from './components/ref/DomRef';
+import { MutableRef } from './components/ref/MutableRef';
+import { CounterClass } from './components/class/CounterClass';
+import { Private } from './components/auth/Private';
+import { Profile } from './components/auth/Profile';
+import { List } from './components/generics/List';
+import { RandomNumber } from './components/restriction/RandomNumber';
+import { Toast } from './components/templateLiterals/Toast';
+import { CustomButton } from './components/html/CustomButton';
+import { CustomInput } from './components/html/CustomInpt';
+import { CustomComponent } from './components/html/CustomComponent';
+import { PolyMorph } from './components/polymorphic/PolyMorph';
 function App() {
   //object
   const personName = {
@@ -78,11 +91,47 @@ function App() {
 
       {/* Typing useContext for user context */}
       <UserContextProvider>
-        <User/>
+        <UserDetails/>
       </UserContextProvider>
 
       {/* Typing useRef Hook */}
+      <DomRef/>
+      <MutableRef/>
 
+      {/* Typing Class component*/}
+      <CounterClass message={"Increment the counter here with class component ->"}/>
+
+    {/* Typing component props */}
+    <hr/>
+      <Private isLoggedIn={false} component={Profile}/>
+      <Private isLoggedIn={true} component={Profile}/>
+    
+    {/* Genrics props */}
+    <hr/>
+    <List items={["Superman", "Batman", "WonderWomen"]} onClick={(item)=>{console.log(item)}}/>
+    <List items={[1, 2, 3]} onClick={(item)=>{console.log(item)}}/>
+
+    {/* Restriction props */}
+    <hr/>
+    <RandomNumber  value={10} isPostive/>
+
+    {/* Template Literal props */}
+      <hr/>
+      <Toast position="left-top"/>
+    {/* Wrapping HTML props */}
+    <hr/>
+    <CustomButton variant="primary" onClick={() => console.log("clicked")}>
+      Primary Button
+      </CustomButton>
+      <CustomInput onChange={(e)=> console.log(e)}/>
+      {/* Extracting Component props */}
+      <hr/>
+      <CustomComponent isLoggedIn name='Test'/>
+       {/* Polymorphic props */}
+       <hr/>
+       <PolyMorph as="h1" size="lg" color="primary">Heading</PolyMorph>
+       <PolyMorph as="p" size="md">Paragraph</PolyMorph>
+       <PolyMorph htmlFor="someId" as="label" size="sm" color="secondary">Text content</PolyMorph>
     </div>
   );
 }
